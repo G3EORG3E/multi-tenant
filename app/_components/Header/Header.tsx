@@ -1,20 +1,20 @@
 import { type JSX } from 'react'
+import dynamic from "next/dynamic";
+
+const MinimalisticHeader = dynamic(() => import("@/app/_components/Header/minimalistic/Header"))
+const ModernHeader = dynamic(() => import("@/app/_components/Header/modern/Header"))
 
 export type HeaderProps = {
   title: string
 }
 const type: string = 'modern'
 
-export default async function Header(props: HeaderProps): Promise<JSX.Element | null> {
+export default function Header(props: HeaderProps): JSX.Element | null {
   switch (type) {
     case 'minimalistic':
-      return await import(
-        '@/app/_components/Header/minimalistic/Header'
-      ).then((module) => module.default(props))
+      return <MinimalisticHeader {...props} />
     case 'modern':
-      return await import(
-        '@/app/_components/Header/modern/Header'
-      ).then((module) => module.default(props))
+      return <ModernHeader {...props} />
     default:
       return null
   }
