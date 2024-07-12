@@ -1,0 +1,7 @@
+.root {
+    @apply bg-red-500;
+
+    &:after {
+        content: 'minimalistic';
+    }
+}
